@@ -32,17 +32,21 @@ export const SearchBtnLabel = styled.span`
 `;
 
 export const SearchForm = styled.form`
+  margin: 0 auto;
+  background-color: #004064;
+  padding: 5px;
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 600px;
-  background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
 `;
 
 export const SearchInput = styled.input`
+
     display: inline-block;
+    margin-left: 5px;
     width: 100%;
     font: inherit;
     font-size: 20px;

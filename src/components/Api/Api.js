@@ -39,7 +39,7 @@ export const getTrending = async () => {
     `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`
   );
   console.log(data);
-  return data;
+  return data.results;
 };
 
 // export const getCommentByPostId = async id => {
