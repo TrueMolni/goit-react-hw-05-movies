@@ -1,11 +1,11 @@
-import {
-  useParams,
-  useNavigate,
-  Link,
-  Outlet,
-  useLocation,
-} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+// import {
+//   useParams,
+//   useNavigate,
+//   Link,
+//   Outlet,
+//   useLocation,
+// } from 'react-router-dom';
+// import { useState, useEffect } from 'react';
 import { getMovieById } from 'components/Api/Api';
 
 const MovieDetails = () => {
