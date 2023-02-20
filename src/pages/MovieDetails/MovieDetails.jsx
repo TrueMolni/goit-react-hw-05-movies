@@ -6,7 +6,7 @@
 //   useLocation,
 // } from 'react-router-dom';
 // import { useState, useEffect } from 'react';
-import { getMovieById } from 'components/Api/Api';
+import { getMovieById } from 'components/Api';
 
 const MovieDetails = () => {
   getMovieById();

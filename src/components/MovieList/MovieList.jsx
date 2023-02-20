@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getTrending } from 'components/Api/Api';
+import { getTrending } from 'components/Api';
 
 import {
   MovieUl,
