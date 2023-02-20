@@ -1,1 +1,6 @@
-export { getMovies, getAllMovies, getMovieById, getTrending } from './Api';
+export {
+  getMovieCredits,
+  getMovieReviews,
+  getMovieById,
+  getTrending,
+} from './Api';

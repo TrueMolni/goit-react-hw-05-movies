@@ -8,11 +8,11 @@ import {
   SearchBtnLabel,
   SearchForm,
   SearchInput,
-} from './Movies.styled';
+} from './MovieSearch.styled';
 
 // import { getMovies, getAllMovies, getMovieById } from 'components/Api/Api';
 
-const Movies = ({ submitPropValue }) => {
+const MovieSearch = ({ submitPropValue }) => {
   const [query, setQuery] = useState('');
 
   Notiflix.Notify.init({
@@ -47,7 +47,7 @@ const Movies = ({ submitPropValue }) => {
       <SearchInput
         onChange={handleChange}
         type="text"
-        name="search"
+        name="query"
         value={query}
         autocomplete="off"
         autoFocus
@@ -58,8 +58,8 @@ const Movies = ({ submitPropValue }) => {
   );
 };
 
-export default Movies;
+export default MovieSearch;
 
-Movies.propType = {
+MovieSearch.propType = {
   onSubmit: PropTypes.func.isRequired,
 };
