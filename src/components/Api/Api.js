@@ -30,7 +30,9 @@ export const getAllMovies = async () => {
 };
 
 export const getMovieById = async id => {
-  const { data } = await instance.get(`/${id}`);
+  const { data } = await instance.get(
+    `https://api.themoviedb.org/3/movies/${id}/credits?api_key=${API_KEY}`
+  );
   return data;
 };
 

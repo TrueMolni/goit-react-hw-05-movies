@@ -5,7 +5,7 @@ import HomePage from '../pages/HomePage';
 
 import NotFound from '../pages/NotFound';
 import Movies from './Movies';
-import MovieDetails from './MovieDetails';
+import MovieDetails from '../pages/MovieDetails';
 import Reviews from './Reviews';
 import Cast from './Cast';
 
