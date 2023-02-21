@@ -11,7 +11,10 @@ const MovieDetails = ({
 }) => {
   return (
     <div>
-      <img src={poster_path || backdrop_path} alt={title} />
+      <img
+        src={`https://image.tmdb.org/t/p/w500${poster_path}` || backdrop_path}
+        alt={title}
+      />
       <div>
         <h2>{title || original_title || name}</h2>
         <p>{release_date}</p>

@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 import Header from './Header';
 const HomePage = lazy(() => import('../pages/HomePage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
-const MovieSearch = lazy(() => import('./MovieSearch'));
+const MovieSearchPage = lazy(() => import('../pages/MovieSearchPage'));
 const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
 const Reviews = lazy(() => import('./Reviews'));
 const Cast = lazy(() => import('./Cast'));
@@ -16,7 +16,7 @@ const App = () => {
       <Suspense fallback={<p>...loading</p>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="movies" element={<MovieSearch />} />
+          <Route path="movies" element={<MovieSearchPage />} />
           <Route path="movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />

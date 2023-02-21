@@ -3,4 +3,5 @@ export {
   getMovieReviews,
   getMovieById,
   getTrending,
+  searchMovies,
 } from './Api';

@@ -10,18 +10,17 @@ import {
   SearchInput,
 } from './MovieSearch.styled';
 
-// import { getMovies, getAllMovies, getMovieById } from 'components/Api/Api';
-
-const MovieSearch = ({ submitPropValue }) => {
+const MovieSearch = ({ myPropOnSubmit }) => {
   const [query, setQuery] = useState('');
 
-  Notiflix.Notify.init({
+  const options = {
     position: 'right-top',
-    clickToClose: 'true',
-  });
+    clickToClose: true,
+  };
+  Notiflix.Notify.init(options);
 
-  const handleChange = event => {
-    setQuery(event.currentTarget.value.toLowerCase());
+  const handleChange = ({ target }) => {
+    setQuery(target.value.toLowerCase());
   };
 
   const resetQuerry = () => {
@@ -30,16 +29,15 @@ const MovieSearch = ({ submitPropValue }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (query.trim() === '') {
-      return Notiflix.Notify.warning('Please enter your query');
+    if (query.trim().length < 1) {
+      return Notiflix.Notify.failure('Enter more than 1 character');
     }
-
-    submitPropValue(query);
+    myPropOnSubmit(query);
     resetQuerry();
   };
 
   return (
-    <SearchForm onSubmit={handleSubmit}>
+    <SearchForm myPropOnSubmit={handleSubmit}>
       <SearchBtn type="submit">
         <FcSearch style={{ width: 22, height: 22 }} />
         <SearchBtnLabel>Search</SearchBtnLabel>
@@ -49,10 +47,10 @@ const MovieSearch = ({ submitPropValue }) => {
         type="text"
         name="query"
         value={query}
-        autocomplete="off"
+        autoComplete="off"
         autoFocus
         placeholder="Search images and photos"
-        reguired
+        required
       />
     </SearchForm>
   );
@@ -61,5 +59,5 @@ const MovieSearch = ({ submitPropValue }) => {
 export default MovieSearch;
 
 MovieSearch.propType = {
-  onSubmit: PropTypes.func.isRequired,
+  myPropOnSubmit: PropTypes.func.isRequired,
 };

@@ -1,7 +1,7 @@
 import { useSearchParams, Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Notiflix from 'notiflix';
-import { searchMovies } from '../../components/Api';
+import { searchMovies } from '../../Api';
 import MovieSearch from '../../components/MovieSearch';
 import {
   MovieUl,
@@ -10,13 +10,13 @@ import {
   MovieItem,
 } from '../../components/MovieList/MovieList.styled';
 
-// const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
-
 const MovieSearchPage = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const IMG = 'https://image.tmdb.org/t/p/w500';
+
   const query = searchParams.get('query');
   const page = searchParams.get('page');
 
@@ -36,37 +36,36 @@ const MovieSearchPage = () => {
       }
     };
     fetchMovieByKeyWord(query);
-  }, [query]);
+  }, [query, page, setMovies]);
 
-  const handleFormSubmit = query => {
-    setSearchParams({ query, page: 1 });
-    setMovies([]);
-  };
+  const handleFormSubmit = useCallback(
+    query => {
+      setSearchParams({ query, page: 1 });
+      setMovies([]);
+    },
+    [setSearchParams]
+  );
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     setSearchParams({ query, page: Number(page) + 1 });
-  };
+  }, [query, page, setSearchParams]);
 
   return (
     <>
-      <MovieSearch submitPropValue={handleFormSubmit} />
-      {movies && (
-        <MovieUl>
-          {movies.map(({ name, original_title, id, poster_path }) => {
-            return (
-              <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
-                <MovieItem>
-                  <FilmPoster
-                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                    alt={name}
-                  />
-                  <PosterTitle>{original_title || name}</PosterTitle>
-                </MovieItem>
-              </Link>
-            );
-          })}
-        </MovieUl>
-      )}
+      <MovieSearch myPropOnSubmit={handleFormSubmit} />
+
+      <MovieUl>
+        {movies?.map(({ name, original_title, id, poster_path }) => {
+          return (
+            <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
+              <MovieItem>
+                <FilmPoster src={`${IMG}/${poster_path}`} alt={name} />
+                <PosterTitle>{original_title || name}</PosterTitle>
+              </MovieItem>
+            </Link>
+          );
+        })}
+      </MovieUl>
 
       {movies.length > 0 && <button onClick={loadMore}>Load more</button>}
     </>

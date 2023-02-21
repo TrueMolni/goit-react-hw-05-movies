@@ -27,7 +27,8 @@ export const getTrending = async () => {
 
 export const searchMovies = async query => {
   const { data } = await instance.get(
-    `/search/movie?api_key=${API_KEY}&query=${query}`
+    `
+/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&include_adult=false`
   );
   return data.results;
 };

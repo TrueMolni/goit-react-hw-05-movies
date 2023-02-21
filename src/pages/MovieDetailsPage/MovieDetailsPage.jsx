@@ -6,24 +6,24 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getMovieById } from 'components/Api';
+import { getMovieById } from 'Api';
 import MovieDetails from '../../components/MovieDetails/MovieDetails';
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState({});
-  const { id } = useParams();
+  const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || '/';
 
   useEffect(() => {
     async function fetchMovieInfo() {
-      if (!id) {
+      if (!movieId) {
         return;
       }
 
       try {
-        const response = await getMovieById(id);
+        const response = await getMovieById(movieId);
         setMovie(response);
         console.log('by id:   ', response);
       } catch (error) {
@@ -31,7 +31,7 @@ const MovieDetailsPage = () => {
       }
     }
     fetchMovieInfo();
-  }, [id]);
+  }, [movieId]);
 
   // const {
   //   name,
@@ -66,7 +66,7 @@ const MovieDetailsPage = () => {
         <Link to="reviews" state={{ from }}>
           <p>Reviews</p>
         </Link>
-        <Outlet context={id} />
+        <Outlet context={movieId} />
       </ul>
     </div>
   );

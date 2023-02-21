@@ -8,7 +8,7 @@ import {
   StyledNavLink,
   NavigationList,
 } from './Header.styled';
-import items from 'components/items';
+import items from '../../items';
 
 const Header = () => {
   const elements = items.map(({ id, text, link }) => {
